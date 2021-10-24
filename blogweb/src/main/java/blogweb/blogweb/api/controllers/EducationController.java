@@ -10,46 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import blogweb.blogweb.business.abstracts.AboutService;
+import blogweb.blogweb.business.abstracts.EducationService;
 import blogweb.blogweb.core.utilities.results.DataResult;
 import blogweb.blogweb.core.utilities.results.Result;
-import blogweb.blogweb.entities.concretes.About;
+import blogweb.blogweb.entities.concretes.Education;
 
 @RestController
-@RequestMapping("/api/about")
+@RequestMapping("/api/educations")
 @CrossOrigin
-public class AboutController {
+public class EducationController {
 
-	private final AboutService aboutService;
+	private final EducationService educationService;
 
-	public AboutController(AboutService aboutService) {
+	public EducationController(EducationService educationService) {
 		super();
-		this.aboutService = aboutService;
+		this.educationService = educationService;
 	}
-
+	
 	@PostMapping("/add")
-	public Result add(@RequestBody About about) {
-		return this.aboutService.add(about);
+	public Result add(@RequestBody Education education) {
+		return this.educationService.add(education);
 	}
 	
 	@PostMapping("/update")
-	public Result update(@RequestBody About about) {
-		return this.aboutService.update(about);
+	public Result update(@RequestBody Education education) {
+		return this.educationService.update(education);
 	}
 	
 	@PostMapping("/delete")
 	public Result delete(@RequestParam int id) {
-		return this.aboutService.delete(id);
+		return this.educationService.delete(id);
 	}
 	
 	@GetMapping("/findAll")
-	public DataResult<List<About>> findAll(){
-		return this.aboutService.findAll();
+	public DataResult<List<Education>> findAll() {
+		return this.educationService.findAll();
 	}
 	
 	@GetMapping("/findById")
-	public DataResult<About> findById(int id){
-		return this.aboutService.findById(id);
+	public DataResult<Education> findById(@RequestParam int id){
+		return this.educationService.findById(id);
 	}
-
+	
 }

@@ -16,6 +16,6 @@ public interface EducationService {
 	
 	DataResult<List<Education>> findAll();
 	
-	DataResult<Education> findByAll(int id);
+	DataResult<Education> findById(int id);
 	
 }

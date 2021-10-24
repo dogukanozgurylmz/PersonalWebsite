@@ -94,7 +94,8 @@ public class ContactManager implements ContactService {
 
 	private boolean realPhoneNumber(String phoneNumber) {
 		
-		Pattern pattern = Pattern.compile("^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$");
+		String regex = "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$";
+		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(phoneNumber);
 		if (!matcher.matches()) {
 			return false;

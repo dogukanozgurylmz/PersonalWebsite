@@ -6,4 +6,6 @@ import blogweb.blogweb.entities.concretes.Education;
 
 public interface EducationDao extends JpaRepository<Education, Integer> {
 
+	Education findById(int id);
+	
 }

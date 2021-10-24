@@ -10,46 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import blogweb.blogweb.business.abstracts.AboutService;
+import blogweb.blogweb.business.abstracts.PostService;
 import blogweb.blogweb.core.utilities.results.DataResult;
 import blogweb.blogweb.core.utilities.results.Result;
-import blogweb.blogweb.entities.concretes.About;
+import blogweb.blogweb.entities.concretes.Post;
 
 @RestController
-@RequestMapping("/api/about")
+@RequestMapping("/api/posts")
 @CrossOrigin
-public class AboutController {
+public class PostController {
 
-	private final AboutService aboutService;
+	private final PostService postService;
 
-	public AboutController(AboutService aboutService) {
+	public PostController(PostService postService) {
 		super();
-		this.aboutService = aboutService;
+		this.postService = postService;
 	}
-
+	
 	@PostMapping("/add")
-	public Result add(@RequestBody About about) {
-		return this.aboutService.add(about);
+	public Result add(@RequestBody Post post) {
+		return this.postService.add(post);
 	}
 	
 	@PostMapping("/update")
-	public Result update(@RequestBody About about) {
-		return this.aboutService.update(about);
+	public Result update(@RequestBody Post post) {
+		return this.postService.update(post);
 	}
 	
 	@PostMapping("/delete")
 	public Result delete(@RequestParam int id) {
-		return this.aboutService.delete(id);
+		return this.postService.delete(id);
 	}
 	
 	@GetMapping("/findAll")
-	public DataResult<List<About>> findAll(){
-		return this.aboutService.findAll();
+	public DataResult<List<Post>> findAll() {
+		return this.postService.findAll();
 	}
 	
 	@GetMapping("/findById")
-	public DataResult<About> findById(int id){
-		return this.aboutService.findById(id);
+	public DataResult<Post> findById(@RequestParam int id) {
+		return this.postService.findById(id);
 	}
-
+	
 }
