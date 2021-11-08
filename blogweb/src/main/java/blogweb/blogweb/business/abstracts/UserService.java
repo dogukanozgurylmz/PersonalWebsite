@@ -10,12 +10,12 @@ public interface UserService {
 
 	Result add(User user);
 	
-	Result update(User user);
-	
 	Result delete(int id);
 	
 	DataResult<List<User>> findAll();
 	
 	DataResult<User> findById(int id);
+	
+	boolean existsByEmailAndPassword(String email, String password);
 	
 }

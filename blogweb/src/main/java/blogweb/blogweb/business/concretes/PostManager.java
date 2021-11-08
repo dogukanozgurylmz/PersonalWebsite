@@ -1,5 +1,7 @@
 package blogweb.blogweb.business.concretes;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,9 @@ public class PostManager implements PostService {
 	@Override
 	public Result add(Post post) {
 		
+		SimpleDateFormat sekil = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+		
 		var resultHeadline = this.postHeadlineWordLimit(post.getHeadline().length());
 		var resultPostContent = this.postContentWordLimit(post.getPostContent().length());
 		if (!resultHeadline) {
@@ -35,6 +40,7 @@ public class PostManager implements PostService {
 		if (!resultPostContent) {
 			return new ErrorResult("İçerik 5000 karakterden fazla olamaz");
 		}
+		post.setAddedDate(sekil.format(date));
 		this.postDao.save(post);
 		return new SuccessResult("Gönderi eklendi");
 		

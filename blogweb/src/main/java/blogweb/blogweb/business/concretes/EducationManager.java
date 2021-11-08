@@ -1,8 +1,6 @@
 package blogweb.blogweb.business.concretes;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
@@ -29,16 +27,6 @@ public class EducationManager implements EducationService {
 	@Override
 	public Result add(Education education) {
 		
-		var resultStartDate = this.realDate(education.getStartDate());
-		var resultEndDate = this.realDate(education.getEndedDate());
-		if (!resultStartDate) {
-			return new ErrorResult("YYYY-AA-GG olarak giriniz.");
-		}
-//		if (!education.getEndedDate().equals(null)) {
-//			if (!resultEndDate) {
-//				return new ErrorResult("YYYY-AA-GG olarak giriniz.");
-//			}
-//		}
 		this.educationDao.save(education);
 		return new SuccessResult("Eğitim bilgileri eklendi");
 	}
@@ -46,16 +34,6 @@ public class EducationManager implements EducationService {
 	@Override
 	public Result update(Education education) {
 		
-		var resultStartDate = this.realDate(education.getStartDate());
-		var resultEndDate = this.realDate(education.getEndedDate());
-		if (!resultStartDate) {
-			return new ErrorResult("YYYY-AA-GG olarak giriniz.");
-		}
-//		if (!education.getEndedDate().equals(null)) {
-//			if (!resultEndDate) {
-//				return new ErrorResult("YYYY-AA-GG olarak giriniz.");
-//			}
-//		}
 		this.educationDao.save(education);
 		return new SuccessResult("Eğitim bilgileri güncellendi");
 		
@@ -93,17 +71,16 @@ public class EducationManager implements EducationService {
 	
 	//İŞ KODLARI - BAŞLANGIÇ
 	
-	private boolean realDate(String date) {
-		
-		String regex = "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26]))))$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(date);
-		if (!matcher.matches()) {
-			return false;
-		}
-		return true;
-		
-	}
+	/*
+	 * private boolean realDate(String date) {
+	 * 
+	 * String regex =
+	 * "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26]))))$"; Pattern
+	 * pattern = Pattern.compile(regex); Matcher matcher = pattern.matcher(date); if
+	 * (!matcher.matches()) { return false; } return true;
+	 * 
+	 * }
+	 */
 	
 	//İŞ KODLARI - BİTİŞ
 

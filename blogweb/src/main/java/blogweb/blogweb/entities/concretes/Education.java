@@ -25,8 +25,8 @@ public class Education {
 	private int id;
 	
 	@NotBlank(message = "Okul adı boş olamaz")
-	@Column(name = "schoole_name")
-	private String schooleName;
+	@Column(name = "school_name")
+	private String schoolName;
 	
 	@Column(name = "grade")
 	private String grade;

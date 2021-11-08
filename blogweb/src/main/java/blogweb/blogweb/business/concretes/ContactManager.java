@@ -29,9 +29,13 @@ public class ContactManager implements ContactService {
 	@Override
 	public Result add(Contact contact) {
 		
-		var result = this.realEmail(contact.getEmail()) || this.realPhoneNumber(contact.getPhoneNumber());
-		if (!result) {
-			return new ErrorResult("İletişim bilgileri eklenemedi");
+		var resultEmail = this.realEmail(contact.getEmail());
+		var resultPhone = this.realPhoneNumber(contact.getPhoneNumber());
+		if (!resultEmail) {
+			return new ErrorResult("Geçerli bir e-posta adresi giriniz");
+		}
+		if (!resultPhone) {
+			return new ErrorResult("Telefon numarasını başında 0 olmadan giriniz");
 		}
 		this.contactDao.save(contact);
 		return new SuccessResult("İletişim bilgileri eklendi");
@@ -41,9 +45,13 @@ public class ContactManager implements ContactService {
 	@Override
 	public Result update(Contact contact) {
 
-		var result = this.realEmail(contact.getEmail()) || this.realPhoneNumber(contact.getPhoneNumber());
-		if (!result) {
-			return new ErrorResult("İletişim bilgileri güncellenemedi");
+		var resultEmail = this.realEmail(contact.getEmail());
+		var resultPhone = this.realPhoneNumber(contact.getPhoneNumber());
+		if (!resultEmail) {
+			return new ErrorResult("Geçerli e-posta adresi giriniz");
+		}
+		if (!resultPhone) {
+			return new ErrorResult("Telefon numarasını başında 0 olmadan giriniz");
 		}
 		this.contactDao.save(contact);
 		return new SuccessResult("İletişim bilgileri güncellendi");
@@ -82,7 +90,7 @@ public class ContactManager implements ContactService {
 
 	private boolean realEmail(String email) {
 
-		String regex = "[a-z0-9!#$%&\\'*+/=?^_\\'{|}~-]+(?:.[a-z0-9!#$%&\\'*+/=?^_\\'{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		if (!matcher.matches()) {

@@ -41,4 +41,10 @@ public class Contact {
 	@Column(name = "twitter")
 	private String twitter;
 	
+	@Column(name = "github")
+	private String github;
+	
+	@Column(name = "linkedin")
+	private String linkedin;
+	
 }

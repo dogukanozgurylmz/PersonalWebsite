@@ -32,4 +32,8 @@ public class Post {
 	@Column(name = "post_content")
 	private String postContent;
 	
+	@NotBlank(message = "Ekleme tarihi boş olamaz")
+	@Column(name = "added_date")
+	private String addedDate;
+	
 }
